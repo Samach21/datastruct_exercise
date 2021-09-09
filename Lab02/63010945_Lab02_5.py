@@ -7,7 +7,7 @@ def bon(w = ''):
             target = i
             break
     return (ord(target) - 96) * 4
-        
+  
         
 secretCode = input("Enter secret code : ")
 print(bon(secretCode))
