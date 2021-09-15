@@ -15,6 +15,14 @@ class LinkedList :
         s = ''
         p = self.head
         while p != None :
+            s += str(p.data) + ' '
+            p = p.next
+        return s.rstrip(' ')
+
+    def strAns(self):
+        s = ''
+        p = self.head
+        while p != None :
             s += str(p.data) + ' -> '
             p = p.next
         return s.rstrip(' ->')
@@ -128,27 +136,72 @@ class LinkedList :
                     q.next = None
                 self.Size -= 1
                 return 'Success'
+    def appendBySort(self, data: int):
+        if self.head is None :
+          p = self.Node(data)
+          self.head = p
+          self.Size += 1
+          return
+        p = self.head
+        for i in range(len(self)) :
+            if p.data >= data :
+                p = p.next
+            else:
+                self.insert(i, data)
+                return
+        self.append(data)
+        
+def cleanData(data: str):
+    return data.replace('-', '')
 
 def redix(data: LinkedList, round: int):
+    print('------------------------------------------------------------')
     print('Round : {}'.format(round))
-    j = 0
+    isEnd = False
+    outPutLinkList = LinkedList()
     R = LinkedList()
+    data_copy = LinkedList()
+    p = data.head
+    for _ in range(data.size()):
+        data_copy.append(p.data)
+        p = p.next
     for i in range(10):
-        for _ in range(data.size()):
-            if data.
-            R.append()
-        while 
-
-
+        p = data_copy.head
+        for _ in range(data_copy.size()):
+            if len(cleanData(str(p.data))) < round:
+                R.appendBySort(p.data)
+            else:
+                if int(str(p.data)[round * -1]) == i:
+                    R.appendBySort(p.data)
+            p = p.next
+        print('{} : {}'.format(i, R))
+        if R.size() > 0:
+            q = R.head
+            for _ in range(R.size()):
+                data_copy.remove(q.data)
+                q = q.next
+        if R.size() == data.size() and i == 0:
+            isEnd = True
+            q = R.head
+            for _ in range(R.size()):
+                outPutLinkList.append(q.data)
+                q = q.next
+        R = LinkedList()
+    return (isEnd, outPutLinkList)
 
 inp = list(map(int, input('Enter Input : ').split()))
 L = LinkedList()
+Old = LinkedList()
 for i in inp:
     L.append(i)
-
+    Old.append(i)
 i = 0
-while redix(L, i + 1) is True:
+while True:
+    con, da = redix(L, i + 1)
+    if con is True:
+        break
     i += 1
+print('------------------------------------------------------------')
 print('{} Time(s)'.format(i))
-
-print('Before Radix Sort : ' + str(L))
+print('Before Radix Sort : ' + L.strAns())
+print('After  Radix Sort : ' + da.strAns())
