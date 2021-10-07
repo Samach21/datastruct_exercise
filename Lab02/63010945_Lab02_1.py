@@ -17,12 +17,12 @@ class translator:
         i = 0
         num = 0
         while i < len(s):
-            if i+1<len(s) and s[i:i+2] in roman:
-                num+=roman[s[i:i+2]]
-                i+=2
+            if i + 1 < len(s) and s[i:i+2] in roman:
+                num += roman[s[i:i+2]]
+                i += 2
             else:
-                num+=roman[s[i]]
-                i+=1
+                num += roman[s[i]]
+                i += 1
         return num
 
 num = int(input("Enter number to translate : "))
