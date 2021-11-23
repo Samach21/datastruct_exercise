@@ -46,10 +46,12 @@ def nqueen_recursive(N):
     colFree = N*[1]
     upFree = (2*N - 1)*[1]
     downFree = (2*N - 1)*[1]
+
     def printBoard(b):
         for row in range(N):
             print([0 if i != b[row] else 1 for i in range(N)])
         print()
+
     def putQueen(r, b, colFree, upFree, downFree):
         nonlocal N
         nonlocal numSol
@@ -66,4 +68,21 @@ def nqueen_recursive(N):
                 
     putQueen(0, b, colFree, upFree, downFree)
     print(f'number of solutions : {numSol}')
+    return numSol
 
+from time import time
+if __name__ == '__main__':
+    s = []
+    t = []
+    for i in range(2, 17):
+        t1 = time()
+        s.append(nqueen_recursive(i))
+        t2 = time()
+        print('time: ' + str(t2 - t1))
+        t.append(t2 - t1)
+    print('-------------------------------')
+    for i in s:
+        print(i)
+    print('*******************')
+    for i in t:
+        print(i)
